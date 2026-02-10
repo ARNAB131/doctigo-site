@@ -247,7 +247,7 @@ body::after{
 .promo-image{
   width: 100%;
   max-width: 890px;      /* REDUCES SIZE */
-  max-height: 400px;     /* CONTROLS HEIGHT */
+  max-height: 420px;     /* CONTROLS HEIGHT */
   object-fit: contain;   /* prevents stretching */
   margin: 0 auto;        /* centers image */
   border-radius: 12px;
