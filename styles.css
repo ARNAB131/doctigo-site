@@ -246,13 +246,16 @@ body::after{
 
 .promo-image{
   width: 100%;
-  max-width: 820px;
-  max-height: 360px;
-  object-fit: contain;
-  margin: 0 auto;
+  max-width: 890px;      /* REDUCES SIZE */
+  max-height: 400px;     /* CONTROLS HEIGHT */
+  object-fit: contain;   /* prevents stretching */
+  margin: 0 auto;        /* centers image */
   border-radius: 12px;
   display:block;
+  position: relative;
+  z-index: 1;
 }
+
 
 
 
