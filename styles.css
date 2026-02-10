@@ -9,7 +9,6 @@
   --neon2:#ff3df7;  /* magenta */
   --neon3:#66ff66;  /* green */
 
-  --danger:#ff3b5c;
   --shadow: 0 18px 45px rgba(0,0,0,.55);
   --thin: 1px solid rgba(0,255,213,.22);
   --thin2: 1px solid rgba(255,61,247,.16);
@@ -20,7 +19,7 @@
 html,body{
   margin:0;
   padding:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+  font-family: "Orbitron", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
   background: radial-gradient(1200px 600px at 20% 10%, rgba(0,255,213,.10), transparent 60%),
               radial-gradient(900px 500px at 80% 15%, rgba(255,61,247,.10), transparent 60%),
               radial-gradient(1000px 700px at 50% 90%, rgba(102,255,102,.08), transparent 65%),
@@ -28,7 +27,7 @@ html,body{
   color:var(--text);
 }
 
-/* subtle grid background */
+/* Subtle grid background */
 body::before{
   content:"";
   position:fixed;
@@ -41,7 +40,7 @@ body::before{
   filter: blur(.15px);
 }
 
-/* scanlines */
+/* Scanlines */
 body::after{
   content:"";
   position:fixed;
@@ -58,6 +57,29 @@ body::after{
   mix-blend-mode: overlay;
 }
 
+/* CRT vignette + slight curvature illusion */
+.crt{
+  position: relative;
+  min-height: 100vh;
+}
+.crt::before{
+  content:"";
+  position: fixed;
+  inset:0;
+  pointer-events:none;
+  background: radial-gradient(1200px 700px at 50% 50%, transparent 55%, rgba(0,0,0,.55) 100%);
+  opacity:.35;
+}
+.crt::after{
+  content:"";
+  position: fixed;
+  inset:-2%;
+  pointer-events:none;
+  border-radius: 42px;
+  box-shadow: inset 0 0 120px rgba(0,0,0,.65);
+  opacity:.25;
+}
+
 /* Outer header padding (creates whitespace around bar) */
 .header-outer{
   background: transparent;
@@ -68,15 +90,14 @@ body::after{
 .top-banner{
   padding: 14px 18px;
   border-radius: 14px;
-  background:
-    linear-gradient(135deg, rgba(0,255,213,.18), rgba(255,61,247,.12), rgba(102,255,102,.10));
+  background: linear-gradient(135deg, rgba(0,255,213,.18), rgba(255,61,247,.12), rgba(102,255,102,.10));
   border: var(--thin);
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
 }
 
-/* animated glow streak in header */
+/* Animated glow streak in header */
 .top-banner::before{
   content:"";
   position:absolute;
@@ -111,19 +132,83 @@ body::after{
   display:block;
 }
 
-/* Title (increased size) */
+/* Hero title with neon gradient text */
 .banner-title{
   flex:1;
   text-align:center;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 950;
-  line-height: 1.15;
-  letter-spacing: 1px;
+  line-height: 1.12;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--text);
+
+  background: linear-gradient(90deg, rgba(0,255,213,.95), rgba(255,61,247,.95), rgba(102,255,102,.95));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
   text-shadow:
-    0 0 14px rgba(0,255,213,.28),
-    0 0 26px rgba(255,61,247,.20);
+    0 0 18px rgba(0,255,213,.16),
+    0 0 26px rgba(255,61,247,.12);
+}
+
+/* Glitch effect */
+.glitch{
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after{
+  content: attr(data-text);
+  position:absolute;
+  left:0;
+  top:0;
+  opacity:.35;
+  pointer-events:none;
+}
+.glitch::before{
+  transform: translate(1px, 0);
+  color: rgba(0,255,213,.6);
+  animation: glitch 2.8s infinite linear alternate-reverse;
+}
+.glitch::after{
+  transform: translate(-1px, 0);
+  color: rgba(255,61,247,.5);
+  animation: glitch 2.2s infinite linear alternate;
+}
+@keyframes glitch{
+  0%{ clip-path: inset(0 0 86% 0); }
+  20%{ clip-path: inset(18% 0 56% 0); }
+  40%{ clip-path: inset(44% 0 34% 0); }
+  60%{ clip-path: inset(62% 0 18% 0); }
+  80%{ clip-path: inset(10% 0 72% 0); }
+  100%{ clip-path: inset(72% 0 10% 0); }
+}
+
+/* HUD corner brackets */
+.hud{
+  position: relative;
+}
+.hud::before,
+.hud::after{
+  content:"";
+  position:absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(0,255,213,.55);
+  opacity:.7;
+  pointer-events:none;
+  z-index: 2;
+}
+.hud::before{
+  top: 10px; left: 10px;
+  border-right:none; border-bottom:none;
+  box-shadow: 0 0 18px rgba(0,255,213,.18);
+}
+.hud::after{
+  bottom: 10px; right: 10px;
+  border-left:none; border-top:none;
+  box-shadow: 0 0 18px rgba(255,61,247,.14);
 }
 
 /* Section containers */
@@ -139,7 +224,6 @@ body::after{
 .features{
   padding: 26px 16px 10px;
 }
-
 .features-title{
   margin: 10px 0 18px;
   text-align:center;
@@ -216,7 +300,7 @@ body::after{
 .btn-4{ color: #ffd166; background: rgba(255, 209, 102, 0.10); }
 .btn-5{ color: #7aa7ff; background: rgba(122, 167, 255, 0.10); }
 
-/* Promo Images layout: diagonal + neon frame + pulse + scan */
+/* Promo images layout: diagonal + neon frame + pulse + scan */
 .promo-image-wrap{
   padding: 14px 16px 8px;
 }
@@ -240,6 +324,8 @@ body::after{
   padding: 12px;
   position: relative;
   overflow: hidden;
+
+  /* animated pulse/glow border */
   animation: neonPulse 2.2s ease-in-out infinite;
 }
 
@@ -250,15 +336,8 @@ body::after{
   inset: 0;
   border-radius: 18px;
   padding: 2px;
-  background: linear-gradient(
-    135deg,
-    rgba(0,255,213,.95),
-    rgba(255,61,247,.85),
-    rgba(102,255,102,.85)
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+  background: linear-gradient(135deg, rgba(0,255,213,.95), rgba(255,61,247,.85), rgba(102,255,102,.85));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: .75;
@@ -273,13 +352,7 @@ body::after{
   top:-60%;
   width: 60%;
   height: 220%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.14),
-    rgba(0,255,213,.10),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), rgba(0,255,213,.10), transparent);
   transform: rotate(18deg);
   animation: scanSweep 3.6s linear infinite;
   opacity: .55;
@@ -288,8 +361,8 @@ body::after{
 
 .promo-image{
   width: 100%;
-  max-width: 900px;
-  max-height: 420px;
+  max-width: 820px;  /* reduced display size */
+  max-height: 360px; /* reduced height */
   object-fit: contain;
   margin: 0 auto;
   border-radius: 14px;
