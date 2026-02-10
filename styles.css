@@ -16,17 +16,39 @@ body{
 
 /* Top banner */
 .top-banner{
-  padding: 28px 18px;
+  padding: 22px 18px;
   background: linear-gradient(135deg, #26d07c 0%, #1fbf84 35%, #15b5ad 100%);
   border-bottom: 2px solid rgba(0,0,0,.08);
 }
 .top-banner h1{
   margin:0;
-  text-align:center;
   font-size: clamp(20px, 2.6vw, 34px);
   font-weight: 800;
   letter-spacing: .2px;
   text-shadow: 0 2px 0 rgba(255,255,255,.25);
+}
+
+/* Banner layout with logo */
+.top-banner-flex{
+  display:flex;
+  align-items:center;
+  gap: 14px;
+}
+.logo-wrap{
+  flex-shrink:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+}
+.logo-img{
+  height: 46px;
+  width:auto;
+  display:block;
+}
+.banner-title{
+  flex:1;
+  text-align:center;
 }
 
 /* Features section */
@@ -44,53 +66,69 @@ body{
   font-size: clamp(22px, 2.1vw, 34px);
 }
 
-/* Buttons */
+/* Buttons layout */
 .feature-buttons{
   display:flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   align-items: center;
   padding: 6px 0 22px;
 }
+
+/* OXY / glassy transparent button base */
 .btn{
   display:block;
   width: min(860px, 92vw);
   text-align:center;
   text-decoration:none;
   padding: 16px 18px;
-  border-radius: 4px;
+  border-radius: 999px;            /* curved corners */
   font-weight: 800;
   letter-spacing: .5px;
   text-transform: uppercase;
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(0,0,0,.12);
-  transition: transform .08s ease, filter .12s ease;
-}
-.btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
-.btn:active{ transform: translateY(0px); filter: brightness(.98); }
 
-.btn-gradient-1{
-  color:#1b1b1b;
-  background: linear-gradient(90deg, #ffb08a 0%, #7b0032 100%);
-}
-.btn-gradient-2{
-  color:#0f2d1c;
-  background: linear-gradient(90deg, #a7f3d0 0%, #34d399 55%, #16a34a 100%);
-}
-.btn-solid-3{
-  color:#2d1b2a;
-  background: #d9b7d6;
-}
-.btn-solid-4{
-  color:#3a1a10;
-  background: #f0c8b5;
-}
-.btn-solid-5{
-  color:#1a2a12;
-  background: #b9e78a;
+  background: rgba(255,255,255,.55); /* transparent with tint per-button */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 2px solid currentColor;    /* border matches text */
+  box-shadow: 0 10px 22px rgba(0,0,0,.10);
+  transition: transform .08s ease, filter .12s ease, background .12s ease;
 }
 
-/* Image block after 5 links */
+.btn:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+}
+
+.btn:active{
+  transform: translateY(0px);
+  filter: brightness(.98);
+}
+
+/* Per-button tint + color (tint matches the text color) */
+.btn-1{
+  color: #7b0032;
+  background: rgba(123, 0, 50, 0.10);
+}
+.btn-2{
+  color: #0f6a3b;
+  background: rgba(15, 106, 59, 0.10);
+}
+.btn-3{
+  color: #6b2b7a;
+  background: rgba(107, 43, 122, 0.10);
+}
+.btn-4{
+  color: #a4512f;
+  background: rgba(164, 81, 47, 0.10);
+}
+.btn-5{
+  color: #2c6b2c;
+  background: rgba(44, 107, 44, 0.10);
+}
+
+/* Image block after links */
 .promo-image-wrap{
   padding: 12px 16px 8px;
   max-width: 1100px;
@@ -98,7 +136,7 @@ body{
 }
 .promo-image-card{
   background:#fff;
-  border-radius: 10px;
+  border-radius: 14px;
   box-shadow: var(--shadow);
   border: 1px solid rgba(0,0,0,.08);
   padding: 12px;
@@ -107,7 +145,7 @@ body{
   width: 100%;
   height: auto;
   display:block;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 /* Why section */
@@ -143,14 +181,16 @@ body{
   line-height: 1.55;
 }
 
+/* Center-align both CTAs */
 .why-actions{
   display:flex;
-  justify-content:flex-start;
+  justify-content:center;
   gap: 18px;
   flex-wrap:wrap;
   max-width: 900px;
   margin: 0 auto;
 }
+
 .cta{
   display:inline-block;
   background: var(--red);
@@ -160,7 +200,7 @@ body{
   padding: 14px 18px;
   min-width: 220px;
   text-align:center;
-  border-radius: 4px;
+  border-radius: 999px; /* curved corners */
   box-shadow: 0 14px 24px rgba(200,16,46,.16);
 }
 
@@ -172,7 +212,7 @@ body{
 }
 .about-card{
   background:#fff;
-  border-radius: 10px;
+  border-radius: 14px;
   box-shadow: var(--shadow);
   border: 1px solid rgba(0,0,0,.08);
   padding: 22px 18px;
@@ -201,6 +241,5 @@ body{
 
 /* Responsive */
 @media (max-width: 620px){
-  .why-actions{ justify-content:center; }
   .cta{ width: min(360px, 92vw); }
 }
