@@ -58,13 +58,13 @@ body::after{
   mix-blend-mode: overlay;
 }
 
-/* White outer area becomes "dark outer frame" now */
+/* Outer header padding (creates whitespace around bar) */
 .header-outer{
   background: transparent;
   padding: 14px 18px;
 }
 
-/* Top banner -> neon glass bar */
+/* Neon glass top bar */
 .top-banner{
   padding: 14px 18px;
   border-radius: 14px;
@@ -76,7 +76,7 @@ body::after{
   overflow: hidden;
 }
 
-/* animated glow streak */
+/* animated glow streak in header */
 .top-banner::before{
   content:"";
   position:absolute;
@@ -106,27 +106,27 @@ body::after{
 }
 
 .logo-img{
-  height: 100px; /* your logo requirement */
+  height: 100px;
   width: auto;
   display:block;
 }
 
-/* reduced title, techno style */
+/* Title (increased size) */
 .banner-title{
   flex:1;
   text-align:center;
-  font-size: 18px;
-  font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: .6px;
+  font-size: 22px;
+  font-weight: 950;
+  line-height: 1.18;
+  letter-spacing: .9px;
   text-transform: uppercase;
   color: var(--text);
   text-shadow:
-    0 0 12px rgba(0,255,213,.18),
-    0 0 18px rgba(255,61,247,.12);
+    0 0 12px rgba(0,255,213,.22),
+    0 0 22px rgba(255,61,247,.16);
 }
 
-/* Sections */
+/* Section containers */
 .features,
 .promo-image-wrap,
 .why,
@@ -135,16 +135,16 @@ body::after{
   margin: 0 auto;
 }
 
+/* Features */
 .features{
   padding: 26px 16px 10px;
 }
 
-/* Feature title in neon */
 .features-title{
   margin: 10px 0 18px;
   text-align:center;
   font-size: 28px;
-  font-weight: 900;
+  font-weight: 950;
   letter-spacing: .8px;
   text-transform: uppercase;
   color: var(--neon2);
@@ -160,14 +160,13 @@ body::after{
   padding: 6px 0 18px;
 }
 
-/* neon glass pill */
 .btn{
   width: 90%;
   max-width: 860px;
   padding: 16px 18px;
   border-radius: 999px;
   text-align:center;
-  font-weight: 900;
+  font-weight: 950;
   letter-spacing: .7px;
   text-decoration:none;
   text-transform: uppercase;
@@ -186,7 +185,6 @@ body::after{
   transition: transform .10s ease, filter .12s ease, box-shadow .18s ease;
 }
 
-/* inner glow sheen */
 .btn::before{
   content:"";
   position:absolute;
@@ -199,7 +197,6 @@ body::after{
   pointer-events:none;
 }
 
-/* hover feel */
 .btn:hover{
   transform: translateY(-2px);
   filter: brightness(1.05);
@@ -219,38 +216,87 @@ body::after{
 .btn-4{ color: #ffd166; background: rgba(255, 209, 102, 0.10); }
 .btn-5{ color: #7aa7ff; background: rgba(122, 167, 255, 0.10); }
 
-/* Image card */
+/* Promo Images layout: diagonal + neon frame + pulse + scan */
 .promo-image-wrap{
   padding: 14px 16px 8px;
 }
 
+.promo-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+/* diagonal positioning */
+.promo-a{ transform: translateY(0px); }
+.promo-b{ transform: translateY(42px); }
+
 .promo-image-card{
   background: var(--panel);
-  border-radius: 16px;
-  border: var(--thin);
+  border-radius: 18px;
+  border: 1px solid rgba(0,255,213,.28);
   box-shadow: var(--shadow);
   padding: 12px;
   position: relative;
-  overflow:hidden;
+  overflow: hidden;
+  animation: neonPulse 2.2s ease-in-out infinite;
 }
 
+/* Neon frame */
 .promo-image-card::before{
   content:"";
   position:absolute;
-  inset:0;
-  background:
-    linear-gradient(120deg, rgba(0,255,213,.10), transparent 40%),
-    linear-gradient(240deg, rgba(255,61,247,.08), transparent 45%);
+  inset: 0;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(0,255,213,.95),
+    rgba(255,61,247,.85),
+    rgba(102,255,102,.85)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: .75;
+  pointer-events:none;
+}
+
+/* Cyber scan band */
+.promo-image-card::after{
+  content:"";
+  position:absolute;
+  left:-40%;
+  top:-60%;
+  width: 60%;
+  height: 220%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.14),
+    rgba(0,255,213,.10),
+    transparent
+  );
+  transform: rotate(18deg);
+  animation: scanSweep 3.6s linear infinite;
+  opacity: .55;
   pointer-events:none;
 }
 
 .promo-image{
-  width: 98%;
-  height: 900px;
-  border-radius: 12px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 420px;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 14px;
   display:block;
   position: relative;
   z-index: 1;
+  box-shadow: 0 0 30px rgba(0,255,213,.10);
 }
 
 /* Why section */
@@ -293,7 +339,6 @@ body::after{
   color: #dbe9ff;
 }
 
-/* CTA buttons */
 .why-actions{
   display:flex;
   justify-content:center;
@@ -301,7 +346,7 @@ body::after{
   flex-wrap:wrap;
 }
 
-/* neon CTA */
+/* CTA */
 .cta{
   background: rgba(200,16,46,.18);
   color: #ffd7df;
@@ -387,10 +432,38 @@ body::after{
   z-index: 1;
 }
 
+/* Animations */
+@keyframes neonPulse{
+  0%, 100%{
+    box-shadow:
+      0 18px 45px rgba(0,0,0,.55),
+      0 0 18px rgba(0,255,213,.16),
+      0 0 12px rgba(255,61,247,.10);
+    border-color: rgba(0,255,213,.22);
+  }
+  50%{
+    box-shadow:
+      0 22px 60px rgba(0,0,0,.62),
+      0 0 28px rgba(0,255,213,.24),
+      0 0 18px rgba(255,61,247,.16);
+    border-color: rgba(255,61,247,.22);
+  }
+}
+
+@keyframes scanSweep{
+  0%{ transform: translateX(-30%) rotate(18deg); }
+  100%{ transform: translateX(220%) rotate(18deg); }
+}
+
 /* Responsive */
+@media (max-width: 860px){
+  .promo-grid{ grid-template-columns: 1fr; }
+  .promo-b{ transform: translateY(0px); }
+}
+
 @media (max-width:620px){
   .logo-img{ height: 84px; }
-  .banner-title{ font-size: 16px; }
+  .banner-title{ font-size: 18px; }
   .features-title{ font-size: 22px; }
   .why-title{ font-size: 28px; }
 }
