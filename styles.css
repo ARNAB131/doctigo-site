@@ -14,12 +14,20 @@ body{
   background:var(--page-bg);
 }
 
-/* Top banner */
+/* White space around the green banner */
+.header-outer{
+  background:#ffffff;
+  padding: 14px 18px;   /* white space left & right */
+}
+
+/* Top banner (shorter) */
 .top-banner{
-  padding: 22px 18px;
+  padding: 14px 18px;   /* shorter green strip */
+  border-radius: 10px;  /* softer edges */
   background: linear-gradient(135deg, #26d07c 0%, #1fbf84 35%, #15b5ad 100%);
   border-bottom: 2px solid rgba(0,0,0,.08);
 }
+
 .top-banner h1{
   margin:0;
   font-size: clamp(20px, 2.6vw, 34px);
@@ -34,6 +42,7 @@ body{
   align-items:center;
   gap: 14px;
 }
+
 .logo-wrap{
   flex-shrink:0;
   display:inline-flex;
@@ -41,11 +50,13 @@ body{
   justify-content:center;
   text-decoration:none;
 }
+
 .logo-img{
-  height: 90px;
-  width:auto;
-  display:block;
+  height: 78px; /* BIG logo */
+  width: auto;
+  display: block;
 }
+
 .banner-title{
   flex:1;
   text-align:center;
@@ -57,6 +68,7 @@ body{
   max-width: 1100px;
   margin: 0 auto;
 }
+
 .features-title{
   margin: 0 0 18px;
   text-align:center;
@@ -75,7 +87,7 @@ body{
   padding: 6px 0 22px;
 }
 
-/* OXY / glassy transparent button base */
+/* OXY / glassy transparent button base + curved corners */
 .btn{
   display:block;
   width: min(860px, 92vw);
@@ -87,7 +99,7 @@ body{
   letter-spacing: .5px;
   text-transform: uppercase;
 
-  background: rgba(255,255,255,.55); /* transparent with tint per-button */
+  background: rgba(255,255,255,.55); /* transparent look */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
@@ -106,7 +118,7 @@ body{
   filter: brightness(.98);
 }
 
-/* Per-button tint + color (tint matches the text color) */
+/* Per-button tint + matching text color */
 .btn-1{
   color: #7b0032;
   background: rgba(123, 0, 50, 0.10);
@@ -134,6 +146,7 @@ body{
   max-width: 1100px;
   margin: 0 auto;
 }
+
 .promo-image-card{
   background:#fff;
   border-radius: 14px;
@@ -141,6 +154,7 @@ body{
   border: 1px solid rgba(0,0,0,.08);
   padding: 12px;
 }
+
 .promo-image{
   width: 100%;
   height: auto;
@@ -155,24 +169,28 @@ body{
   margin: 0 auto;
   text-align:center;
 }
+
 .why-title{
   margin: 0 0 8px;
   color:#2e7d32;
   font-weight: 900;
   font-size: clamp(24px, 2.5vw, 42px);
 }
+
 .why-sub{
   margin: 0 auto 18px;
   max-width: 920px;
   color: var(--muted);
   font-weight: 600;
 }
+
 .why-mission{
   margin: 0 0 10px;
   color:#2e7d32;
   font-weight: 900;
   font-size: 22px;
 }
+
 .why-text{
   margin: 0 auto 22px;
   max-width: 900px;
@@ -210,6 +228,7 @@ body{
   margin: 0 auto;
   padding: 28px 16px 50px;
 }
+
 .about-card{
   background:#fff;
   border-radius: 14px;
@@ -220,12 +239,14 @@ body{
   margin: 0 auto;
   text-align:center;
 }
+
 .about-title{
   margin: 0 0 12px;
   font-size: clamp(24px, 2.3vw, 36px);
   font-weight: 900;
   color:#2e7d32;
 }
+
 .about-text{
   margin: 0 auto 12px;
   max-width: 780px;
@@ -233,13 +254,15 @@ body{
   line-height: 1.6;
   color:#202020;
 }
+
 .about-actions{
   margin-top: 18px;
   display:flex;
   justify-content:center;
 }
 
-/* Responsive */
+/* Responsive tweaks */
 @media (max-width: 620px){
   .cta{ width: min(360px, 92vw); }
+  .logo-img{ height: 64px; } /* slightly smaller on small screens */
 }
